@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Monitoring Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Weather Monitoring Dashboard</h1>
+        <div class="weather-summary">
+            {% for city, records in weather_data.items() %}
+                <h2>{{ city }}</h2>
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <th>Average Temperature (°C)</th>
+                        <th>Max Temperature (°C)</th>
+                        <th>Min Temperature (°C)</th>
+                        <th>Dominant Condition</th>
+                    </tr>
+                    {% for record in records %}
+                        <tr>
+                            <td>{{ record.date }}</td>
+                            <td>{{ record.avg_temp }}</td>
+                            <td>{{ record.max_temp }}</td>
+                            <td>{{ record.min_temp }}</td>
+                            <td>{{ record.dominant_condition }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
